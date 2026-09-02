@@ -30,7 +30,7 @@ const rpcSubscriptions = createSolanaRpcSubscriptions(
 const token_decimals = 1_000_000n;
 
 //paste your mint address got from spl_init.ts
-const mint = address("E2Jazz2VXcVL9RZkn6ZFA4q1YGvgEvrns3Gr6w72DC4w");
+const mint = address("8pm8BQiw1dJusSqy5vH8Um2iarZtKDe2CvjijSqJtVQP");
 
 (async () => {
   try {
