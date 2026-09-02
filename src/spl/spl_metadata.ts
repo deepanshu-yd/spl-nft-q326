@@ -30,21 +30,30 @@ umi.use(signerIdentity(signer));
       mintAuthority: signer,
     };
 
-    //change the metadata
-    // const data: DataV2Args =
+    const data: DataV2Args = {
+      name: "DeEvil",
+      symbol: "EVIL",
+      uri: "https://example.com/tbn.json",
+      sellerFeeBasisPoints: 0,
+      creators: null,
+      collection: null,
+      uses: null,
+    };
 
-    // const args: CreateMetadataAccountV3InstructionArgs =
+    const args: CreateMetadataAccountV3InstructionArgs = {
+      data,
+      isMutable: true,
+      collectionDetails: null,
+    };
 
-    // const tx = createMetadataAccountV3(umi, {
-    //   ...accounts,
-    //   ...args,
-    // });
+    const tx = createMetadataAccountV3(umi, {
+      ...accounts,
+      ...args,
+    });
 
-    // const result = await tx.sendAndConfirm(umi);
-    // console.log("signature: ", bs58.encode(Buffer.from(result.signature)));
+    const result = await tx.sendAndConfirm(umi);
+    console.log("signature: ", bs58.encode(Buffer.from(result.signature)));
   } catch (error) {
     console.log("error", error);
   }
 })();
-
-//43ttSnN9qaVi8TDcWwBZo5mUbfKDXY8d1N7exdJojJxV7qjKuwXoEh7qASXbFU4QFrAEFzZvcmWpRch434hSVNLN
