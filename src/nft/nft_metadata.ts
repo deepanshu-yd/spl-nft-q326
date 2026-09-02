@@ -29,7 +29,7 @@ umi.use(signerIdentity(signer));
 
     const metadata = {
       name: "DeEvil",
-      description: "NFT minted with MPL Core on devnet.",
+      description: "Assignment NFT minted with MPL Core on devnet.",
       image,
       attributes: [
         { trait_type: "cohort", value: "q326" },
