@@ -4,7 +4,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "spl:init": "npx ts-node src/spl/spl_init.ts",
     "spl:metadata": "npx ts-node src/spl/spl_metadata.ts",
     "spl:mint": "npx ts-node src/spl/spl_mint.ts",
@@ -12,8 +11,10 @@
     "nft:image": "npx ts-node src/nft/nft_image.ts",
     "nft:metadata": "npx ts-node src/nft/nft_metadata.ts",
     "nft:mint": "npx ts-node src/nft/nft_mint.ts",
-    "nft:update": "npx ts-node src/nft/nft_update.ts"
-    
+    "nft:update": "npx ts-node src/nft/nft_update.ts",
+    "nft:transfer": "npx ts-node src/nft/nft_transfer.ts",
+    "nft:burn": "npx ts-node src/nft/nft_burn.ts",
+    "test": "npx ts-mocha -p tsconfig.json 'tests/**/*.ts' --timeout 180000 --exit"
   },
   "keywords": [],
   "author": "",
@@ -31,10 +32,10 @@
     "bs58": "^6.0.0"
   },
   "devDependencies": {
-    "@types/chai": "^5.2.3",
+    "@types/chai": "^4.3.20",
     "@types/mocha": "^10.0.10",
     "@types/node": "^25.6.0",
-    "chai": "^6.2.2",
+    "chai": "^4.5.0",
     "mocha": "^11.8.0",
     "ts-mocha": "^11.1.0",
     "ts-node": "^10.9.2",

@@ -2,10 +2,10 @@ import { createUmi } from "@metaplex-foundation/umi-bundle-defaults";
 import wallet from "../../devnet-wallet.json";
 import {
   createSignerFromKeypair,
-  generateSigner,
+  publicKey,
   signerIdentity,
 } from "@metaplex-foundation/umi";
-import { create, mplCore } from "@metaplex-foundation/mpl-core";
+import { fetchAsset, mplCore, transfer } from "@metaplex-foundation/mpl-core";
 import { base58 } from "@metaplex-foundation/umi/serializers";
 
 const umi = createUmi(
@@ -14,33 +14,28 @@ const umi = createUmi(
 
 const keypair = umi.eddsa.createKeypairFromSecretKey(new Uint8Array(wallet));
 const signer = createSignerFromKeypair(umi, keypair);
-
 umi.use(signerIdentity(signer));
-
 umi.use(mplCore());
+
+const assetId = publicKey("3h1ofrenGXStorpdomnho9NBDoyFr6n2i1uxGRks3yr2");
+const newOwner = publicKey("HJURtDYNxuS7wLtDMqQWYV5rjN25edf7bghruXZzEAv");
 
 (async () => {
   try {
-    const metadataUri =
-      "https://gateway.irys.xyz/5KAJKWgMZa1VHY1CKbAqX1AYcoKN9g4PHeGYDrD6GwDo".trim();
-    const asset = generateSigner(umi);
+    const before = await fetchAsset(umi, assetId);
+    console.log("owner before", before.owner);
 
-    const tx = await create(umi, {
-      asset,
-      name: "DeEvil",
-      uri: metadataUri,
+    const tx = await transfer(umi, {
+      asset: before,
+      newOwner,
     }).sendAndConfirm(umi);
 
     const signature = base58.deserialize(tx.signature)[0];
-    console.log(`signature ${signature} , asset : ${asset.publicKey}`);
-    console.log(
-      `core explorer: https://core.metaplex.com/explorer/${asset.publicKey}`,
-    );
-    console.log(
-      `solana explorer: https://explorer.solana.com/address/${asset.publicKey}?cluster=devnet`,
-    );
-
+    const after = await fetchAsset(umi, assetId);
+    console.log("owner after", after.owner);
+    console.log("update authority still", after.updateAuthority);
+    console.log("signature", signature);
   } catch (e) {
-    console.log(`error ${e}`);
+    console.log("error", e);
   }
 })();
