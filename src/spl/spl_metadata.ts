@@ -33,7 +33,7 @@ umi.use(signerIdentity(signer));
     const data: DataV2Args = {
       name: "DeEvil",
       symbol: "EVIL",
-      uri: "https://example.com/tbn.json",
+      uri: "https://gateway.irys.xyz/Fpx64Uk3gwKu76Gjds7SapRtBNMjeodbESpQJ2qUDwwp",
       sellerFeeBasisPoints: 0,
       creators: null,
       collection: null,

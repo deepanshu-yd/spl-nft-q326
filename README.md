@@ -25,6 +25,9 @@ All of this runs on **devnet**.
 | Supply | 10 tokens (9 in my ATA, 1 transferred) |
 | Create mint | [`65kezUyF…S1uo`](https://explorer.solana.com/tx/65kezUyFRXp3LXwFtanVuK9eZW3aTsGJZRXi5GPH94Pc5TW1jiSxGwNb1QPpvHwcpVaREEiRsKK1Q5AA4F6rS1uo?cluster=devnet) |
 | Token metadata | [`xTVa7Vbi…cNK`](https://explorer.solana.com/tx/xTVa7Vbi9vUkH8VjndNUZYR1H2GxXYaNLLWHTtJUA41rMF8qmmfCxbB9p4MxuDMXuqs8ZsiM7zhxwJ2Ki4Z2cNK?cluster=devnet) |
+| Image | [Irys](https://gateway.irys.xyz/AvNxi1wpjBG6iw2yP7o8uRuLFaXXbFYy3er4rwWVojgL) |
+| Metadata JSON | [Irys](https://gateway.irys.xyz/Fpx64Uk3gwKu76Gjds7SapRtBNMjeodbESpQJ2qUDwwp) |
+| Metadata update | [`2HKM5aXY…GtnF`](https://explorer.solana.com/tx/2HKM5aXYe5YwKWSfvcSgyF3NdWgNdWrXs9epuXoPvom3Hk6ymVc1mvCD9ZvixpFNBpJrauqPoYyCL9PxXDWbGtnF?cluster=devnet) |
 | Mint 10 tokens | [`3j8F7gpY…7h8k`](https://explorer.solana.com/tx/3j8F7gpYCPpd537bbfTqzFQSnomCzxwnWFAU9Dn7mJZzjQ8Unv3a4wJ5AAp4PuKwGLxL8KsMxvNyP41Nvf6S7h8k?cluster=devnet) |
 | Transfer 1 token | [`39wd2tdY…xCAs`](https://explorer.solana.com/tx/39wd2tdYKnUirRgS1UXFTGTfzovVUWn3HdkyorHGbFCzPR2r7nBsdU54DpRzHRayPLiZWTLH4ik9xSZY7jrhxCAs?cluster=devnet) |
 
@@ -53,7 +56,7 @@ tests/       Same operations against devnet, with assertions
 image.jpeg   Artwork uploaded to Irys
 ```
 
-**SPL path:** a mint account is the token’s identity. Balances live in Associated Token Accounts, not on the wallet itself. Transfer is ATA → ATA (`TransferChecked`, 6 decimals). Metaplex Token Metadata attaches the name `DeEvil` / symbol `EVIL`.
+**SPL path:** a mint account is the token’s identity. Balances live in Associated Token Accounts, not on the wallet itself. Transfer is ATA → ATA (`TransferChecked`, 6 decimals). Metaplex Token Metadata attaches the name `DeEvil` / symbol `EVIL`, with the logo hosted on Irys.
 
 **Core path:** one Asset account is the whole NFT. Image and JSON sit off-chain on Irys; the asset only stores `name` + `uri`. Update authority can change those fields. Owner can transfer or burn. Burning closes the account and returns most of the rent. A tiny leftover stays so the address cannot be reused.
 
